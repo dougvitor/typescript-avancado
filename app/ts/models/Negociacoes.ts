@@ -9,7 +9,8 @@ export class Negociacoes {
     }
 
     getNegociacoes(): Negociacao[]{
-        return [].concat(this._negociacoes);
+        return ([] as Negociacao[]).concat(this._negociacoes);
+        
     }
 
 }

@@ -15,7 +15,7 @@ System.register(["../models/index", "../views/index"], function (exports_1, cont
             NegociacaoController = class NegociacaoController {
                 constructor() {
                     this._negociacoes = new index_1.Negociacoes();
-                    this._negociacoesView = new index_2.NegociacoesView('#negociacoesViewID');
+                    this._negociacoesView = new index_2.NegociacoesView('#negociacoesViewID', true);
                     this._mensagemView = new index_2.MensagemView('#mensagemView');
                     this._inputData = document.querySelector('#data');
                     this._inputQuantidade = $('#quantidade');
@@ -24,10 +24,17 @@ System.register(["../models/index", "../views/index"], function (exports_1, cont
                 }
                 adiciona(event) {
                     event.preventDefault();
-                    const negociacao = new index_1.Negociacao(new Date(this._inputData.value.replace(/-/g, ',')), parseInt(this._inputQuantidade.val()), parseFloat(this._inputValor.val()));
+                    let data = new Date(this._inputData.value.replace(/-/g, ','));
+                    if (!this._ehDiaUtil(data)) {
+                        return this._mensagemView.update('Informe apenas negociações ocorridas em dias úteis.');
+                    }
+                    const negociacao = new index_1.Negociacao(data, parseInt(this._inputQuantidade.val()), parseFloat(this._inputValor.val()));
                     this._negociacoes.adiciona(negociacao);
                     this._negociacoesView.update(this._negociacoes.getNegociacoes());
                     this._mensagemView.update('Negociação adicionada com sucesso');
+                }
+                _ehDiaUtil(data) {
+                    return data.getDay() != index_1.DiaDaSemana.DOMINGO && data.getDay() != index_1.DiaDaSemana.SABADO;
                 }
             };
             exports_1("NegociacaoController", NegociacaoController);

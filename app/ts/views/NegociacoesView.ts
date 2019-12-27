@@ -30,7 +30,7 @@ export class NegociacoesView extends View<Negociacao[]>{
 
             <tfoot>
             </tfoot>
-        </table>               
+        </table>       
         `
     }
 }
