@@ -1,7 +1,8 @@
-import { Negociacao } from './Negociacao';
+import { Negociacao } from './index';
 import { logarTempoDeExecucao } from '../helpers/decorators/index';
+import { MeuObjeto } from './MeuObjeto';
 
-export class Negociacoes {
+export class Negociacoes implements MeuObjeto<Negociacoes>{
 
     private _negociacoes : Negociacao [] = [];
 
@@ -15,7 +16,7 @@ export class Negociacoes {
         
     }
 
-    toString(): void{
+    toFuckString(): void{
 
         console.log(
             `
@@ -24,5 +25,10 @@ export class Negociacoes {
             `
         );
     }
-    
+
+    ehIgual(negociacoes: Negociacoes): boolean{
+
+        return JSON.stringify(this._negociacoes) == JSON.stringify(negociacoes.getNegociacoes());
+    }
+
 }

@@ -25,11 +25,14 @@ System.register(["../helpers/decorators/index"], function (exports_1, context_1)
                 getNegociacoes() {
                     return [].concat(this._negociacoes);
                 }
-                toString() {
+                toFuckString() {
                     console.log(`
                 Impressão
                 ${JSON.stringify(this._negociacoes)}
             `);
+                }
+                ehIgual(negociacoes) {
+                    return JSON.stringify(this._negociacoes) == JSON.stringify(negociacoes.getNegociacoes());
                 }
             };
             __decorate([
