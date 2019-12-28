@@ -15,4 +15,14 @@ export class Negociacoes {
         
     }
 
+    toString(): void{
+
+        console.log(
+            `
+                Impressão
+                ${JSON.stringify(this._negociacoes)}
+            `
+        );
+    }
+    
 }

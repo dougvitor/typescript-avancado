@@ -25,6 +25,12 @@ System.register(["../helpers/decorators/index"], function (exports_1, context_1)
                 getNegociacoes() {
                     return [].concat(this._negociacoes);
                 }
+                toString() {
+                    console.log(`
+                Impressão
+                ${JSON.stringify(this._negociacoes)}
+            `);
+                }
             };
             __decorate([
                 index_1.logarTempoDeExecucao()
